@@ -1,7 +1,7 @@
-﻿using WebServer.Server.Common;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
+    using WebServer.Server.Common;
+
     public class HttpHeader
     {
         public HttpHeader(string name, string value)

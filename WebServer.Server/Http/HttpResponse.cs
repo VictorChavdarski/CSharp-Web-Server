@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
+    using System;
+    using System.Text;
+
     public abstract class HttpResponse
     {
         public HttpResponse(HttpStatusCode statusCode)

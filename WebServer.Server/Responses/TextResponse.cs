@@ -1,9 +1,9 @@
-﻿using System.Text;
-using WebServer.Server.Common;
-using WebServer.Server.Http;
-
-namespace WebServer.Server.Responses
+﻿namespace WebServer.Server.Responses
 {
+    using System.Text;
+    using WebServer.Server.Common;
+    using WebServer.Server.Http;
+
     public class TextResponse : HttpResponse
     {
         public TextResponse(string text, string contentType)

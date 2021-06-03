@@ -1,7 +1,7 @@
-﻿using WebServer.Server.Http;
-
-namespace WebServer.Server.Routing
+﻿namespace WebServer.Server.Routing
 {
+    using WebServer.Server.Http;
+
     public interface IRoutingTable
     {
         IRoutingTable Map(string url, HttpMethod method, HttpResponse response);

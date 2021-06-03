@@ -1,6 +1,4 @@
-﻿
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
     using System.Collections.Generic;
     using System.Linq;

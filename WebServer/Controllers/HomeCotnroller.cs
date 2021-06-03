@@ -1,7 +1,6 @@
-﻿using WebServer.Server.Http;
-
-namespace WebServer.Controllers
+﻿namespace WebServer.Controllers
 {
+    using WebServer.Server.Http;
     public class HomeCotnroller
     {
         public HttpResponse Index()
