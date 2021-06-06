@@ -4,23 +4,12 @@
     using WebServer.Server.Common;
     using WebServer.Server.Http;
 
-    public class TextResponse : HttpResponse
+    public class TextResponse : ContentResponse
     {
-        public TextResponse(string text, string contentType)
-            :base(HttpStatusCode.OK)
-        {
-            Guard.AgainstNull(text);
-
-            var contentLength = Encoding.UTF8.GetByteCount(text).ToString();
-
-            this.Headers.Add("Content-Length", contentLength);
-            this.Headers.Add("Content-Type", contentType);
-
-            this.Content = text;
-        }
+      
 
         public TextResponse(string text)
-        : this(text, "text/plain; charset=utf-8")
+        : base(text, "text/plain; charset=utf-8")
         {
         }
     }
