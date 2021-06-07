@@ -15,8 +15,9 @@ Make sure the HTTP server can populate the routing table
 Create specific HTTP response classes - TextResponse, for example
 Implement the ToString method for the HTTP response class
 Implement the routing table for storing and retrieving request mapping
-Use the routing table in the HTTP server for actual request-response matching
+Use the routing table in the HTTP server for actual request-response matching and execution
 Separate the URL and parse query string if it exists
+Introduce the option to use the request by storing request-response function in the routing table
 
 Tasks:
 Working controllers
