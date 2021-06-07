@@ -9,7 +9,9 @@
         private const string NewLine = "\r\n";
         public HttpMethod Method { get; init; }
 
-        public string Url { get; init; }
+        public string Path { get; init; }
+
+        public Dictionary<string, string> Query { get; private set; }
 
         public HttpHeaderCollection Headers { get; private set; }
 
@@ -22,31 +24,56 @@
             var startLine = lines.First().Split(" ");
 
             var method = ParseHttpMethod(startLine[0]);
+
             var url = startLine[1];
+
+            var (path, query) = ParseUrl(url);
 
             var headers = ParseHttpHeaders(lines.Skip(1));
 
             var bodyLines = lines.Skip(headers.Count + 2).ToArray();
+
             var body = string.Join(NewLine, bodyLines);
 
             return new HttpRequest
             {
                 Method = method,
-                Url = url,
+                Path = path,
+                Query = query,
                 Headers = headers,
                 Body = body,
             };
         }
 
         public static HttpMethod ParseHttpMethod(string method)
-            => method.ToLower() switch
+            => method.ToUpper() switch
+            {
+                "GET" => HttpMethod.Get,
+                "POST" => HttpMethod.Post,
+                "PUT" => HttpMethod.Put,
+                "DELETE" => HttpMethod.Delete,
+                _ => throw new InvalidOperationException($"Method {method} is not supported."),
+            };
+
+        private static (string, Dictionary<string, string>) ParseUrl(string url)
         {
-            "GET" => HttpMethod.Get,
-            "POST" => HttpMethod.Post,
-            "PUT" => HttpMethod.Put,
-            "DELETE" => HttpMethod.Delete,
-            _ => throw new InvalidOperationException($"Method {method} is not supported."),
-        };
+            var urlParts = url.Split('?');
+
+            var path = urlParts[0];
+
+            var query = urlParts.Length > 1
+                ? ParseQuery(urlParts[1])
+                : new Dictionary<string, string>();
+
+            return (path, query);
+        }
+
+        private static Dictionary<string, string> ParseQuery(string queryString) 
+            => queryString
+                 .Split('&')
+                 .Select(part => part.Split('='))
+                 .Where(part => part.Length == 2)
+                 .ToDictionary(part => part[0], part => part[1]);
 
         private static HttpHeaderCollection ParseHttpHeaders(IEnumerable<string> headerLines)
         {
