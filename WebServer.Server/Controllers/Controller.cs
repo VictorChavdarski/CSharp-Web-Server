@@ -16,5 +16,7 @@ namespace WebServer.Server
         protected HttpResponse Html(string html)
             => new HtmlResponse(html);
 
+        protected HttpResponse Redirect(string location)
+            => new RedirectResponse(location);
     }
 }

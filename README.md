@@ -18,9 +18,11 @@ Implement the routing table for storing and retrieving request mapping
 Use the routing table in the HTTP server for actual request-response matching and execution
 Separate the URL and parse query string if it exists
 Introduce the option to use the request by storing request-response function in the routing table
+Introduce base controllers and extract common functionalities
+Shorten the route syntax and add support for controllers
+Add redirect HTTP response and use the Location header to control the flow
 
 Tasks:
-Working controllers
 Views and HTML
 Forms and user input
 Cookies and state
